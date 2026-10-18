@@ -13,7 +13,7 @@ def layout(title, description, content):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{description}">
-<meta name="keywords" content="instagram video download, reels download, insta video saver, instagram downloader, videodropper alternative, download instagram reels hd">
+<meta name="keywords" content="video downloader, instagram downloader, tiktok downloader, facebook video downloader, youtube downloader, all in one downloader">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://yourdomain.com/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
@@ -37,21 +37,6 @@ body{{background:#fff;color:#111;}}
 .faq{{text-align:left;margin-top:60px}} .faq h2{{font-size:22px;margin-bottom:15px}} .faq details{{background:#f9f9f9;padding:15px;border-radius:12px;margin-bottom:10px}}
 .footer{{text-align:center;margin-top:60px;padding:20px 0;border-top:1px solid #eee;opacity:0.6;font-size:12px}}
 </style>
-<script type="application/ld+json">
-{{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{{
-    "@type": "Question",
-    "name": "How to download Instagram videos?",
-    "acceptedAnswer": {{"@type": "Answer","text": "Paste Instagram video URL in our downloader and click Download to save in HD without watermark."}}
-  }},{{
-    "@type": "Question",
-    "name": "Is this Instagram downloader free?",
-    "acceptedAnswer": {{"@type": "Answer","text": "Yes, 100% free, no watermark, no ads popups."}}
-  }}]
-}}
-</script>
 </head>
 <body>
 <div class="container">
@@ -63,7 +48,7 @@ body{{background:#fff;color:#111;}}
 </div>
 {content}
 <div class="footer">
-© 2026 VideoDropper - Best Instagram Video Downloader | No Watermark<br>
+© 2026 VideoDropper - All Video Downloader | No Watermark<br>
 <a href="/about">About</a> | <a href="/privacy">Privacy</a> | <a href="/contact">Contact</a> | <a href="/sitemap.xml">Sitemap</a>
 <br><br>Disclaimer: This tool is for public videos only. We do not host any content.
 </div>
@@ -76,10 +61,10 @@ body{{background:#fff;color:#111;}}
 def home():
     content = """
 <div class="hero">
-<h1>Instagram Video Downloader - HD</h1>
-<p>Download Instagram Videos, Reels, Photos, Stories in HD without watermark. Fast, Free, No Ads.</p>
+<h1>All Video Downloader - HD</h1>
+<p>Download Instagram, TikTok, Facebook, YouTube, Twitter Videos in HD without watermark. Fast & Free.</p>
 <div class="search-box">
-<input id="urlInput" placeholder="https://www.instagram.com/reel/...">
+<input id="urlInput" placeholder="Paste any link - Instagram / TikTok / FB / YouTube...">
 <button id="dlBtn" onclick="downloadVideo()">Download</button>
 </div>
 <div id="error" style="color:red;margin-top:15px;display:none"></div>
@@ -89,24 +74,19 @@ def home():
 <p style="font-size:12px;opacity:0.5;margin-top:10px">Long press video > Save Video on Mobile</p>
 </div>
 
-<!-- ADS PLACEHOLDER - Yahan Monetag / Adsterra ka code lagana -->
-<div class="ad-box">AD SPACE - Paste Your Adsterra / Monetag Code Here - 300x250
-<!-- <script> your ad code </script> -->
-</div>
+<div class="ad-box">AD SPACE - Paste Your Adsterra / Monetag Code Here - 300x250</div>
 
 <div class="faq">
-<h2>Why Choose Our VideoDropper?</h2>
-<details><summary><b>1. How to download Instagram Reels?</b></summary><p style="margin-top:10px;opacity:0.7">Copy reel link from Instagram app > Paste here > Click Download > Save HD video.</p></details>
-<details><summary><b>2. Is it safe and free?</b></summary><p style="margin-top:10px;opacity:0.7">Yes 100% free, safe, no login required, no watermark like VideoDropper.app</p></details>
-<details><summary><b>3. Can I download private videos?</b></summary><p style="margin-top:10px;opacity:0.7">No, we only support public Instagram videos, reels and photos.</p></details>
-<h2 style="margin-top:30px">How to Use Instagram Downloader - 3 Steps</h2>
-<p style="opacity:0.7;line-height:1.6;margin-top:10px">Instagram video download is very easy. Our tool is best alternative to videodropper.app. Just copy the Instagram video link and paste it. Our server fetches the HD video URL using yt-dlp API and gives you direct download link. No need to install any app.</p>
+<h2>Supported Platforms</h2>
+<p style="opacity:0.7">✅ Instagram Reels, Stories ✅ TikTok No Watermark ✅ Facebook Reels & Videos ✅ YouTube Shorts & Videos ✅ Twitter / X</p>
+<h2 style="margin-top:30px">How to Use - 3 Steps</h2>
+<p style="opacity:0.7;line-height:1.6;margin-top:10px">Copy any video link and paste here. Our server fetches HD video URL using yt-dlp API. Supports 1000+ sites.</p>
 </div>
 </div>
 <script>
 async function downloadVideo(){
   let url = document.getElementById('urlInput').value.trim();
-  if(!url.includes('instagram.com')){ showError('Please paste a valid Instagram link'); return; }
+  if(url.length < 10){ showError('Please paste a valid link'); return; }
   let btn = document.getElementById('dlBtn'); btn.innerText = 'Fetching...'; btn.disabled = true;
   document.getElementById('error').style.display='none'; document.getElementById('result').style.display='none';
   try{
@@ -124,21 +104,21 @@ async function downloadVideo(){
 function showError(msg){ let el=document.getElementById('error'); el.innerText=msg; el.style.display='block'; }
 </script>
 """
-    return layout("Instagram Video Downloader - HD Reels, Photos, Story - No Watermark | VideoDropper", "Download Instagram Videos, Reels, Photos, Stories in HD without watermark. Fast, Free, No Login. Best VideoDropper Alternative 2026.", content)
+    return layout("All Video Downloader - Instagram, TikTok, Facebook, YouTube - HD No Watermark", "Download any video from Instagram, TikTok, Facebook, YouTube, Twitter in HD without watermark. Free All-in-One downloader.", content)
 
 @app.route('/about')
 def about():
-    c = "<div style='margin-top:40px;line-height:1.7'><h1>About Us</h1><p style='margin-top:15px;opacity:0.8'>VideoDropper is a free Instagram video downloader tool launched in 2026. Our mission is to provide fast, clean, no-ads experience to download public Instagram content in HD. We do not host any copyrighted content. This is best alternative to videodropper.app</p></div>"
-    return layout("About Us - VideoDropper", "About VideoDropper Instagram downloader", c)
+    c = "<div style='margin-top:40px;line-height:1.7'><h1>About Us</h1><p style='margin-top:15px;opacity:0.8'>VideoDropper is a free all-in-one video downloader. Supports 1000+ sites via yt-dlp.</p></div>"
+    return layout("About Us - VideoDropper", "About VideoDropper", c)
 
 @app.route('/privacy')
 def privacy():
-    c = "<div style='margin-top:40px;line-height:1.7'><h1>Privacy Policy</h1><p style='margin-top:15px;opacity:0.8'>We do not store any videos. All videos are directly fetched from Instagram CDN. We do not collect personal data. We use cookies for ads (AdSense, Adsterra, Monetag). Contact us for any DMCA removal.</p></div>"
+    c = "<div style='margin-top:40px;line-height:1.7'><h1>Privacy Policy</h1><p style='margin-top:15px;opacity:0.8'>We do not store any videos. All videos are directly fetched from CDN.</p></div>"
     return layout("Privacy Policy - VideoDropper", "Privacy Policy", c)
 
 @app.route('/contact')
 def contact():
-    c = "<div style='margin-top:40px;line-height:1.7'><h1>Contact Us</h1><p style='margin-top:15px;opacity:0.8'>Email: support@yourdomain.com<br>If you have any copyright issue, please email us we will remove content in 24 hours.</p></div>"
+    c = "<div style='margin-top:40px;line-height:1.7'><h1>Contact Us</h1><p style='margin-top:15px;opacity:0.8'>Email: support@yourdomain.com</p></div>"
     return layout("Contact Us - VideoDropper", "Contact Us", c)
 
 @app.route('/sitemap.xml')
@@ -146,9 +126,6 @@ def sitemap():
     xml = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://yourdomain.com/</loc><priority>1.0</priority></url>
-<url><loc>https://yourdomain.com/about</loc><priority>0.8</priority></url>
-<url><loc>https://yourdomain.com/privacy</loc><priority>0.5</priority></url>
-<url><loc>https://yourdomain.com/contact</loc><priority>0.5</priority></url>
 </urlset>"""
     return Response(xml, mimetype='text/xml')
 
@@ -159,15 +136,4 @@ def robots():
 @app.route('/api/download', methods=['POST'])
 def download_api():
     try:
-        insta_url = request.get_json().get('url','')
-        ydl_opts = {'quiet': True,'no_warnings': True,'format': 'best','noplaylist': True,}
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(insta_url, download=False)
-            video_url = info.get('url') or info.get('entries',[{}])[0].get('url') or info.get('formats', [{}])[-1].get('url')
-            if not video_url: return jsonify({"error": "Could not extract. Public link use karein."}), 400
-            return jsonify({"video_url": video_url})
-    except Exception as e:
-        return jsonify({"error": f"Failed: {str(e)[:100]}"}), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+        insta_url = request.get_json
