@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import requests, re
+import requests
 import yt_dlp
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ async function download(){
  let res=await fetch('/download?url='+encodeURIComponent(u));
  let data=await res.json();
  if(data.url){
-   document.getElementById('result').innerHTML='<a href=\"'+data.url+'\" target=\"_blank\" style=\"background:green;color:white;padding:10px;display:block;border-radius:10px;text-decoration:none\">✅ Click to Download HD Video</a><br>'+data.title;
+   document.getElementById('result').innerHTML='<a href="'+data.url+'" target="_blank" style="background:green;color:white;padding:15px;display:block;border-radius:10px;text-decoration:none">✅ Click to Download HD Video</a><br>'+data.title;
  }else{
    document.getElementById('result').innerText='Error: '+data.error;
  }
@@ -50,23 +50,38 @@ def home():
 
 @app.route('/download')
 def dl():
-    url = request.args.get('url','')
+    url = request.args.get('url','').strip()
     if not url:
         return jsonify({"error":"No url"}), 400
     try:
-        # Resolve short TikTok links
         if 'vt.tiktok.com' in url or 'vm.tiktok.com' in url:
-            r = requests.get(url, allow_redirects=True, timeout=10, headers={'User-Agent':'Mozilla/5.0'})
-            url = r.url
-        
+            try:
+                r = requests.get(url, allow_redirects=True, timeout=15, headers={'User-Agent':'Mozilla/5.0'})
+                url = r.url
+            except:
+                pass
+
+        if 'tiktok.com' in url:
+            try:
+                api_url = "https://www.tikwm.com/api/"
+                res = requests.post(api_url, data={"url": url, "count": 12, "cursor": 0, "web": 1, "hd": 1}, headers={"User-Agent":"Mozilla/5.0"}, timeout=15)
+                data = res.json()
+                if data.get('code') == 0:
+                    video_url = data['data'].get('hdplay') or data['data'].get('play')
+                    title = data['data'].get('title','TikTok Video')
+                    if video_url:
+                        return jsonify({"url": video_url, "title": title})
+            except Exception as e:
+                print("TikWM failed:", e)
+
         ydl_opts = {'quiet':True,'no_warnings':True,'format':'best'}
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
-            video_url = info.get('url') or info.get('entries',[{}])[0].get('url') or info['formats'][-1]['url']
+            video_url = info.get('url') or info['formats'][-1]['url']
             title = info.get('title','Video')
-            return jsonify({"url":video_url,"title":title})
+            return jsonify({"url": video_url, "title": title})
     except Exception as e:
-        return jsonify({"error":str(e)}), 500
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run()
